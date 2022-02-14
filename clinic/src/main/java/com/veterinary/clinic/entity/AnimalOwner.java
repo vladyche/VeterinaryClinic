@@ -2,10 +2,11 @@ package com.veterinary.clinic.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.Objects;
 
 @Entity
-@Table(name = "owner")
-public class Owner {
+@Table(name = "animal_owner")
+public class AnimalOwner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,7 +29,7 @@ public class Owner {
     @Column(name = "phone")
     private String phone;
 
-    public Owner() {}
+    public AnimalOwner() {}
 
     public long getId() {
         return id;
@@ -76,5 +77,30 @@ public class Owner {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnimalOwner that = (AnimalOwner) o;
+        return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(patronymic, that.patronymic) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, patronymic, email, phone);
+    }
+
+    @Override
+    public String toString() {
+        return "AnimalOwner{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                '}';
     }
 }
