@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AnimalOwnerDaoTest {
 
     @Test
-    public void createTest(){
+    public void saveTest(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ClinicAppConfig.class);
         AnimalOwnerDao animalOwnerDao = context.getBean("animalOwnerDao", AnimalOwnerDaoImpl.class);
 
