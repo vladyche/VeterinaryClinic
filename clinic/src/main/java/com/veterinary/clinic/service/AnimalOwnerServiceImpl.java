@@ -17,7 +17,7 @@ public class AnimalOwnerServiceImpl implements AnimalOwnerService{
 
     @Override
     public AnimalOwner create(AnimalOwner animalOwner) {
-        return null;
+        return animalOwnerDao.save(animalOwner);
     }
 
     @Override
