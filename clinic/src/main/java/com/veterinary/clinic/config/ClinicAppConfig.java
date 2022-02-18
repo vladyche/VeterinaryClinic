@@ -1,4 +1,4 @@
-package com.veterinary.clinic.configuration;
+package com.veterinary.clinic.config;
 
 import com.veterinary.clinic.dao.AnimalOwnerDao;
 import com.veterinary.clinic.dao.AnimalOwnerDaoImpl;

@@ -1,6 +1,6 @@
 package com.veterinary.clinic.service;
 
-import com.veterinary.clinic.configuration.ClinicAppConfig;
+import com.veterinary.clinic.config.ClinicAppConfig;
 import com.veterinary.clinic.entity.AnimalOwner;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
