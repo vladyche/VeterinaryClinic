@@ -6,13 +6,14 @@ import com.veterinary.clinic.service.AnimalOwnerService;
 import com.veterinary.clinic.service.AnimalOwnerServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
 
     @RequestMapping("/")
-    public String home(){
+    public String home(Model model){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ClinicAppConfig.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
@@ -24,7 +25,7 @@ public class HomeController {
         animalOwner.setEmail("mail@mail.com");
 
         System.out.println(animalOwnerService.create(animalOwner));
-
+        model.addAttribute("attr", "Hello Spring!");
         return "home";
     }
 }

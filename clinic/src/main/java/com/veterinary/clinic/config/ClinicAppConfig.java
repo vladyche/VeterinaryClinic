@@ -29,4 +29,24 @@ public class ClinicAppConfig {
     public AnimalOwnerService animalOwnerService(){
         return new AnimalOwnerServiceImpl(animalOwnerDao());
     }
+
+//    @Bean
+//    public ApplicationContext applicationContext(){
+//        return new AbstractApplicationContext() {
+//            @Override
+//            protected void refreshBeanFactory() throws BeansException, IllegalStateException {
+//
+//            }
+//
+//            @Override
+//            protected void closeBeanFactory() {
+//
+//            }
+//
+//            @Override
+//            public ConfigurableListableBeanFactory getBeanFactory() throws IllegalStateException {
+//                return null;
+//            }
+//        };
+//    }
 }
