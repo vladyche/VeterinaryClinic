@@ -22,12 +22,12 @@ public class AnimalOwnerServiceImpl implements AnimalOwnerService{
 
     @Override
     public AnimalOwner readById(long id) {
-        return null;
+        return animalOwnerDao.findById(id);
     }
 
     @Override
     public AnimalOwner readByPhone(String phone) {
-        return null;
+        return animalOwnerDao.findByPhone(phone);
     }
 
     @Override

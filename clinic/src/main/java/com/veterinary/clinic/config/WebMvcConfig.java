@@ -1,6 +1,5 @@
 package com.veterinary.clinic.config;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,22 +14,6 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.veterinary.clinic"})
 public class WebMvcConfig implements WebMvcConfigurer{
-
-//    @Bean
-//    public ViewResolver viewResolver() {
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//
-//        viewResolver.setPrefix("/view/");
-//        viewResolver.setSuffix(".jsp");
-//
-//        return viewResolver;
-//    }
-
-//    private final ApplicationContext applicationContext;
-//
-//    public WebMvcConfig(ApplicationContext applicationContext) {
-//        this.applicationContext = applicationContext;
-//    }
 
     /*
      * Create SpringResourceTemplateResolver

@@ -3,6 +3,7 @@ package com.veterinary.clinic.dao;
 import com.veterinary.clinic.entity.AnimalOwner;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -33,13 +34,49 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
     }
 
     @Override
-    public AnimalOwner findByPhone(String phoneNumber) {
-        return null;
+    public AnimalOwner findByPhone(String phone) {
+        AnimalOwner animalOwner = null;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+
+            String hql = "FROM AnimalOwner a WHERE a.phone =: phone";
+            Query query = session.createQuery(hql);
+            query.setParameter("phone", phone);
+
+            animalOwner = (AnimalOwner) query.uniqueResult();
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.sessionFactory.close();
+        }
+
+        return animalOwner;
     }
 
     @Override
     public AnimalOwner findById(long id) {
-        return null;
+        AnimalOwner animalOwner = null;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+
+            String hql = "FROM AnimalOwner a WHERE a.id =: id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+
+            animalOwner = (AnimalOwner) query.uniqueResult();
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.sessionFactory.close();
+        }
+
+        return animalOwner;
     }
 
     @Override

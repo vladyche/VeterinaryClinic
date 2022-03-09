@@ -1,6 +1,6 @@
 package com.veterinary.clinic.dao;
 
-import com.veterinary.clinic.config.ClinicAppConfig;
+import com.veterinary.clinic.config.AppBeans;
 import com.veterinary.clinic.entity.AnimalOwner;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -11,7 +11,7 @@ public class AnimalOwnerDaoTest {
 
     @Test
     public void saveTest(){
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ClinicAppConfig.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerDao animalOwnerDao = context.getBean("animalOwnerDao", AnimalOwnerDaoImpl.class);
 
         AnimalOwner animalOwner = new AnimalOwner();

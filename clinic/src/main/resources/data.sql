@@ -1,1 +1,2 @@
--- INSERT INTO animal_owner(id, email, firstname, lastname, patronymic, phone) VALUES(1, 'mail@mail.com', 'Vlad', 'm', 'p', '0977032547');
+INSERT INTO animal_owner(id, email, firstname, lastname, patronymic, phone) VALUES(1, 'mail@mail.com', 'Vlad', 'm', 'p', '0977032547');
+INSERT INTO animal_owner(id, email, firstname, lastname, patronymic, phone) VALUES(2, 'mail@mail.com', 'Myroslava', 'm', 'p', '0971112233');

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ClinicAppConfig {
+public class AppBeans {
 
     @Bean
     public SessionFactory sessionFactory(){
@@ -29,24 +29,4 @@ public class ClinicAppConfig {
     public AnimalOwnerService animalOwnerService(){
         return new AnimalOwnerServiceImpl(animalOwnerDao());
     }
-
-//    @Bean
-//    public ApplicationContext applicationContext(){
-//        return new AbstractApplicationContext() {
-//            @Override
-//            protected void refreshBeanFactory() throws BeansException, IllegalStateException {
-//
-//            }
-//
-//            @Override
-//            protected void closeBeanFactory() {
-//
-//            }
-//
-//            @Override
-//            public ConfigurableListableBeanFactory getBeanFactory() throws IllegalStateException {
-//                return null;
-//            }
-//        };
-//    }
 }
