@@ -20,7 +20,9 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
     public AnimalOwner save(AnimalOwner animalOwner) {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
+
             session.save(animalOwner);
+
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -28,8 +30,7 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
             this.sessionFactory.close();
         }
 
-        //TODO: return a real record from database
-
+        //TODO: return object from db
         return animalOwner;
     }
 

@@ -13,8 +13,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/animal-owner")
 public class AnimalOwnerController {
 
+    @GetMapping("")
+    public String animalOwner(){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
+        AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        context.close();
+        return "animal-owner-index";
+    }
+
     @GetMapping("/{animal_owner_id}")
-    public String animalOwner(@PathVariable String animal_owner_id, Model model){
+    public String animalOwnerPage(@PathVariable String animal_owner_id, Model model){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
@@ -25,8 +34,20 @@ public class AnimalOwnerController {
     }
 
     @GetMapping("/create")
-    public String animalOwnerCreate(){
+    public String animalOwnerCreatePage(Model model){
+        model.addAttribute("animalOwner", new AnimalOwner());
         return "animal-owner-create";
+    }
+
+    @PostMapping("/create")
+    public String animalOwnerCreate(@ModelAttribute("animalOwner") AnimalOwner animalOwner){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
+        AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        AnimalOwner o = animalOwnerService.create(animalOwner);
+
+        String url = "/animal-owner/update/" + o.getId();
+        return "redirect:" + url;
     }
 
     @GetMapping("/update/{animal_owner_id}")
@@ -45,9 +66,9 @@ public class AnimalOwnerController {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
-        animalOwnerService.update(animalOwner);
+        AnimalOwner o = animalOwnerService.update(animalOwner);
 
-        String url = "/animal-owner/update/" + animalOwner.getId();
+        String url = "/animal-owner/update/" + o.getId();
         return "redirect:" + url;
     }
 
