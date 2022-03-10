@@ -29,9 +29,26 @@ public class AnimalOwnerController {
         return "animal-owner-create";
     }
 
-    @GetMapping("/update")
-    public String animalOwnerUpdate(){
+    @GetMapping("/update/{animal_owner_id}")
+    public String animalOwnerUpdatePage(@PathVariable String animal_owner_id, Model model){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
+        AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        model.addAttribute("animalOwner", animalOwnerService.readById(Long.parseLong(animal_owner_id)));
+
+        context.close();
         return "animal-owner-update";
+    }
+
+    @PostMapping("/update")
+    public String animalOwnerUpdate(@ModelAttribute("animalOwner") AnimalOwner animalOwner){
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
+        AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        animalOwnerService.update(animalOwner);
+
+        String url = "/animal-owner/update/" + animalOwner.getId();
+        return "redirect:" + url;
     }
 
     @GetMapping("/search")

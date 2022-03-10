@@ -32,7 +32,7 @@ public class AnimalOwnerServiceImpl implements AnimalOwnerService{
 
     @Override
     public AnimalOwner update(AnimalOwner animalOwner) {
-        return null;
+        return animalOwnerDao.update(animalOwner);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
 
-            String hql = "FROM AnimalOwner a WHERE a.phone =: phone";
+            String hql = "FROM AnimalOwner a WHERE a.phone = :phone";
             Query query = session.createQuery(hql);
             query.setParameter("phone", phone);
 
@@ -63,7 +63,7 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
 
-            String hql = "FROM AnimalOwner a WHERE a.id =: id";
+            String hql = "FROM AnimalOwner a WHERE a.id = :id";
             Query query = session.createQuery(hql);
             query.setParameter("id", id);
 
@@ -81,7 +81,27 @@ public class AnimalOwnerDaoImpl implements AnimalOwnerDao {
 
     @Override
     public AnimalOwner update(AnimalOwner animalOwner) {
-        return null;
+        AnimalOwner o = null;
+
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+
+            o = session.get(AnimalOwner.class, animalOwner.getId());
+
+            o.setFirstName(animalOwner.getFirstName());
+            o.setLastName(animalOwner.getLastName());
+            o.setPatronymic(animalOwner.getPatronymic());
+            o.setEmail(animalOwner.getEmail());
+            o.setPhone(animalOwner.getPhone());
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            this.sessionFactory.close();
+        }
+
+        return o;
     }
 
     @Override

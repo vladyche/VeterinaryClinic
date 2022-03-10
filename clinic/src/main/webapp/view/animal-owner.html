@@ -10,7 +10,7 @@
 <body>
     <h1 style="padding-bottom: 5px;">animal owner</h1>
 
-    <div><a href="/animal-owner/update" class="edit">Edit</a></div>
+    <div><a th:href="@{|/animal-owner/update/${animalOwner.id}|}" class="edit">Edit</a></div>
 
     <div style="margin: 25px 0">
         <div th:text="${animalOwner.getId()}"></div>

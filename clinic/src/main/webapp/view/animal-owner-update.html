@@ -8,7 +8,42 @@
 </head>
 
 <body>
-<h1 style="padding-bottom: 5px;">edit page</h1>
+    <h1 style="padding-bottom: 5px;">edit page</h1>
 
+    <form th:action="@{/animal-owner/update}" th:object="${animalOwner}" method="post">
+        <div>
+            <label for="id">Id</label>
+            <input id="id" type="text" th:field="*{id}" readonly>
+        </div>
+
+        <div>
+            <label for="first-name">First Name</label>
+            <input id="first-name" type="text" th:field="*{firstName}">
+        </div>
+
+        <div>
+            <label for="last-name">Last Name</label>
+            <input id="last-name" type="text" th:field="*{lastName}">
+        </div>
+
+        <div>
+            <label for="patronymic">Patronymic</label>
+            <input id="patronymic" type="text" th:field="*{patronymic}">
+        </div>
+
+        <div>
+            <label for="phone">Phone</label>
+            <input id="phone" type="text" th:field="*{phone}">
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="text" th:field="*{email}">
+        </div>
+
+        <div>
+            <input type="submit" value="Update">
+        </div>
+    </form>
 </body>
 </html>
