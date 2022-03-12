@@ -12,8 +12,14 @@
 
     <form th:action="@{/animal-owner/create}" th:object="${animalOwner}" method="post">
         <div>
-            <label for="first-name">First Name</label>
-            <input id="first-name" type="text" th:field="*{firstName}">
+            <div>
+                <label for="first-name">First Name</label>
+                <input id="first-name" type="text" th:field="*{firstName}">
+            </div>
+
+            <div>
+                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+            </div>
         </div>
 
         <div>

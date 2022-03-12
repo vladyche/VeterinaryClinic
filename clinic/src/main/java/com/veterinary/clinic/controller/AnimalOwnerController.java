@@ -7,6 +7,8 @@ import com.veterinary.clinic.service.AnimalOwnerServiceImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AnimalOwnerController {
 
     @GetMapping("")
-    public String animalOwner(){
+    public String animalOwnerIndexPage(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
@@ -40,9 +42,13 @@ public class AnimalOwnerController {
     }
 
     @PostMapping("/create")
-    public String animalOwnerCreate(@ModelAttribute("animalOwner") AnimalOwner animalOwner){
+    public String animalOwnerCreate(@Validated @ModelAttribute("animalOwner") AnimalOwner animalOwner, BindingResult result){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        if(result.hasErrors()){
+            return "animal-owner-create";
+        }
 
         AnimalOwner o = animalOwnerService.create(animalOwner);
 
@@ -62,9 +68,13 @@ public class AnimalOwnerController {
     }
 
     @PostMapping("/update")
-    public String animalOwnerUpdate(@ModelAttribute("animalOwner") AnimalOwner animalOwner){
+    public String animalOwnerUpdate(@Validated @ModelAttribute("animalOwner") AnimalOwner animalOwner, BindingResult result){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
+
+        if(result.hasErrors()){
+            return "animal-owner-update";
+        }
 
         AnimalOwner o = animalOwnerService.update(animalOwner);
 
