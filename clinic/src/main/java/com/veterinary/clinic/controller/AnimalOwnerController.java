@@ -21,7 +21,7 @@ public class AnimalOwnerController {
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
         context.close();
-        return "animal-owner-index";
+        return "animal-owner/animal-owner-index";
     }
 
     @GetMapping("/{animal_owner_id}")
@@ -32,13 +32,13 @@ public class AnimalOwnerController {
         model.addAttribute("animalOwner", animalOwnerService.readById(Long.parseLong(animal_owner_id)));
 
         context.close();
-        return "animal-owner";
+        return "animal-owner/animal-owner";
     }
 
     @GetMapping("/create")
     public String animalOwnerCreatePage(Model model){
         model.addAttribute("animalOwner", new AnimalOwner());
-        return "animal-owner-create";
+        return "animal-owner/animal-owner-create";
     }
 
     @PostMapping("/create")
@@ -47,7 +47,7 @@ public class AnimalOwnerController {
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
         if(result.hasErrors()){
-            return "animal-owner-create";
+            return "animal-owner/animal-owner-create";
         }
 
         AnimalOwner o = animalOwnerService.create(animalOwner);
@@ -64,7 +64,7 @@ public class AnimalOwnerController {
         model.addAttribute("animalOwner", animalOwnerService.readById(Long.parseLong(animal_owner_id)));
 
         context.close();
-        return "animal-owner-update";
+        return "animal-owner/animal-owner-update";
     }
 
     @PostMapping("/update")
@@ -73,7 +73,7 @@ public class AnimalOwnerController {
         AnimalOwnerService animalOwnerService = context.getBean("animalOwnerService", AnimalOwnerServiceImpl.class);
 
         if(result.hasErrors()){
-            return "animal-owner-update";
+            return "animal-owner/animal-owner-update";
         }
 
         AnimalOwner o = animalOwnerService.update(animalOwner);
@@ -84,7 +84,7 @@ public class AnimalOwnerController {
 
     @GetMapping("/search")
     public String animalOwnerSearchPage(){
-        return "animal-owner-search";
+        return "animal-owner/animal-owner-search";
     }
 
     @PostMapping("/search")
@@ -100,7 +100,7 @@ public class AnimalOwnerController {
         }
 
         context.close();
-        return "animal-owner-search";
+        return "animal-owner/animal-owner-search";
     }
 }
 

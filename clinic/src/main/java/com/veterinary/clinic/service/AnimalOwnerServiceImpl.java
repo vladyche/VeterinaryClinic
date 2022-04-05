@@ -14,7 +14,6 @@ public class AnimalOwnerServiceImpl implements AnimalOwnerService{
         this.animalOwnerDao = animalOwnerDao;
     }
 
-
     @Override
     public AnimalOwner create(AnimalOwner animalOwner) {
         return animalOwnerDao.save(animalOwner);

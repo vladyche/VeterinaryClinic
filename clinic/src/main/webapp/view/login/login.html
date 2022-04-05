@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+
+<body>
+<h1 style="padding-bottom: 5px;">login form</h1>
+
+<div th:if="${param.error}">
+    <div class="alert alert-danger">
+        <div>error</div>
+    </div>
+</div>
+
+<div th:if="${param.logout}">
+    <div class="alert alert-danger">
+        <div>logout</div>
+    </div>
+</div>
+
+<form th:action="@{/login}" method="post">
+    <div>
+        <div>
+            <label for="login">Login</label>
+            <input id="login" type="text" name="username">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="text" name="password">
+        </div>
+
+        <div>
+            <input type="submit" th:value="Login">
+        </div>
+    </div>
+</form>
+</body>
+</html>
